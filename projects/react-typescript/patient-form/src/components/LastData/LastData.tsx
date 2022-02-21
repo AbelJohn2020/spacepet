@@ -36,6 +36,7 @@ type lastData = {
     | undefined;
   onChangeEmail: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onChangePhoneNumber: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleClickNext: () => void;
 };
 
 const LastData = ({
@@ -45,6 +46,7 @@ const LastData = ({
   setActive,
   onChangeEmail,
   onChangePhoneNumber,
+  handleClickNext,
 }: lastData) => {
   return (
     <>
@@ -103,6 +105,16 @@ const LastData = ({
           nameIcon="phone"
         />
       </div>
+      {validationEmail(data.fieldEmail.email) === "safe-field" &&
+      validationPhoneNumber(data.fieldPhoneNumber.number) === "safe-field" ? (
+        <button type="button" onClick={handleClickNext}>
+          next
+        </button>
+      ) : (
+        <button type="button" disabled>
+          next
+        </button>
+      )}
     </>
   );
 };

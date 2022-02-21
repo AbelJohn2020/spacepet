@@ -56,10 +56,14 @@ export const ValidationsForm = {
     const date = new Date().toLocaleDateString();
     const newDate = date.split("/");
     const updateDate = newDate.map((element: string) =>
-      element > "2000" ? (Number(element) - Number("18")).toString() : element
+      parseInt(element) > 2000
+        ? (parseInt(element) - parseInt("18")).toString()
+        : element
     );
     const limitDate = newDate.map((element: string) =>
-      element > "2000" ? (Number(element) - Number("120")).toString() : element
+      parseInt(element) > 2000
+        ? (parseInt(element) - parseInt("120")).toString()
+        : element
     );
     const local = `${updateDate[2]}-${updateDate[1]}-${updateDate[0]}`;
     const limit = `${limitDate[2]}-${limitDate[1]}-${limitDate[0]}`;

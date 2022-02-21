@@ -249,6 +249,17 @@ export const HandleChangesForm = {
     }
   },
 
+  handleSubmit: function (
+    e: React.FormEvent<HTMLFormElement>,
+    setData: React.Dispatch<React.SetStateAction<formState>>,
+    data: formState,
+    setSendForm: React.Dispatch<React.SetStateAction<boolean>>
+  ) {
+    e.preventDefault();
+    setData(data);
+    setSendForm(true);
+  },
+
   // handle changes in counter
   handleClickNext: function (
     setCounter: React.Dispatch<React.SetStateAction<number>>,

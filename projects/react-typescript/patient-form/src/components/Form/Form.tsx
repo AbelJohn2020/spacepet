@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ConfirmData from "../ConfirmData/ConfirmData";
 import FirstData from "../FirstData/FirstData";
 import { HandleChangesForm } from "../HandleChangesForm/HandleChangesForm";
 import LastData from "../LastData/LastData";
@@ -48,6 +49,7 @@ const Form = () => {
   >();
 
   const [counter, setCounter] = useState<number>(0);
+  const [sendForm, setSendForm] = useState<boolean>(false);
 
   useEffect(() => {
     setData(data);
@@ -81,6 +83,7 @@ const Form = () => {
     handleChangePhoneNumber,
     // handle changes in counter
     handleClickNext,
+    handleSubmit,
   } = HandleChangesForm;
 
   const renderComponent = (counter: number) => {
@@ -135,6 +138,16 @@ const Form = () => {
             onChangePhoneNumber={(e) =>
               handleChangePhoneNumber(e, setData, data, phone)
             }
+            handleClickNext={() => handleClickNext(setCounter, counter)}
+          />
+        );
+      case 3:
+        return (
+          <ConfirmData
+            data={data}
+            counter={counter}
+            handleClickNext={handleClickNext}
+            setCounter={setCounter}
           />
         );
       default:
@@ -145,18 +158,9 @@ const Form = () => {
   return (
     <div>
       <h1>sign up</h1>
-      <form>
+      <form onSubmit={(e) => handleSubmit(e, setData, data, setSendForm)}>
         {renderComponent(counter)}
-
-        {counter === 2 &&
-          (email(data.fieldEmail.email) === "safe-field" &&
-          phone(data.fieldPhoneNumber.number) === "safe-field" ? (
-            <button type="submit">create</button>
-          ) : (
-            <button type="submit" disabled>
-              create
-            </button>
-          ))}
+        {sendForm && <h1>Form submitted successfully</h1>}
       </form>
     </div>
   );

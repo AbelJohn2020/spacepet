@@ -111,29 +111,25 @@ const FirstData = ({
           blankSpaxe={data.fieldGender.gender}
         />
         <div>
-          <Inputs
-            setActive={setActive}
-            onClickText={() => setActive("male")}
-            nameText="gender"
-            typeText="radio"
-            placeholderText=""
-            textValue="male"
-            onChangeText={onChangeGender}
-            nameIcon=""
+          <input
+            className="text-input"
+            name="gender"
+            type="radio"
+            value="male"
+            defaultChecked={data.fieldGender.gender === "male" ? true : false}
+            onChange={onChangeGender}
           />
           <label>male</label>
         </div>
 
         <div>
-          <Inputs
-            setActive={setActive}
-            onClickText={() => setActive("female")}
-            nameText="gender"
-            typeText="radio"
-            placeholderText=""
-            textValue="female"
-            onChangeText={onChangeGender}
-            nameIcon=""
+          <input
+            className="text-input"
+            name="gender"
+            type="radio"
+            value="female"
+            defaultChecked={data.fieldGender.gender === "female" ? true : false}
+            onChange={onChangeGender}
           />
           <label>female</label>
         </div>
